@@ -11,14 +11,14 @@ def peliculas_mes(mes):
     '''Determina la cantidad de películas que se estrenaron en el mes dado'''
    
     respuesta = df['id'][df['release_month'] == mes].count()
-    return {'mes': mes, 'cantidad': respuesta}
+    return {'mes': mes, 'cantidad': str(respuesta)}
 
 @app.get("/peliculas_dia/{dia}")
 def peliculas_dia(dia):
     '''Determina la cantidad de películas que se estrenaron en el día dado'''
    
     respuesta = df['id'][df['release_day'] == dia].count()
-    return {'dia': dia, 'cantidad': respuesta}
+    return {'dia': dia, 'cantidad': str(respuesta)}
 
 @app.get("/franquicia/{franquicia}")
 def franquicia(franquicia):
