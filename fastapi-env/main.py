@@ -22,7 +22,7 @@ def peliculas_dia(dia : str):
 
 @app.get("/franquicia/{franquicia}")
 def franquicia(franquicia):
-    '''Determina la cantidad de películas que pertenecen a la franquicia dada, la ganancia total y la ganancia promedio'''
+    '''Determina la cantidad de películas que pertenece a la franquicia dada, la ganancia total y la ganancia promedio'''
    
     respuesta1 = df['id'][df['belongs_to_collection'] == franquicia].count()
     respuesta2 = np.sum(df['return'][df['belongs_to_collection'] == franquicia])
