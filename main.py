@@ -69,4 +69,4 @@ def retorno(pelicula):
             respuesta2 += df.iloc[i, 10]
             respuesta3 += df.iloc[i, 20]
             respuesta4 = df.iloc[i, 17]
-    return {'pelicula':pelicula, 'inversion':respuesta1, 'ganacia':respuesta2,'retorno':respuesta3, 'anio':respuesta4}
+    return {'pelicula':pelicula, 'inversion':respuesta1, 'ganacia':respuesta2,'retorno':respuesta3, 'anio':str(respuesta4)}
