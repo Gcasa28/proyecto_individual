@@ -1,4 +1,8 @@
 from fastapi import FastAPI
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv(r"C:\Users\Yanina Lucia\Desktop\fastapi\FastApi\fastapi-env")
 
 app = FastAPI()
 
