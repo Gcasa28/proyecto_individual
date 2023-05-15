@@ -11,14 +11,14 @@ def peliculas_mes(mes):
     '''Determina la cantidad de películas que se estrenaron en el mes dado'''
    
     respuesta = df['id'][df['release_month'] == mes].count()
-    return {'mes': mes, 'cantidad': str(respuesta)}
+    return {'mes': mes, 'cantidad': int(respuesta)}
 
 @app.get("/peliculas_dia/{dia}")
 def peliculas_dia(dia):
     '''Determina la cantidad de películas que se estrenaron en el día dado'''
    
     respuesta = df['id'][df['release_day'] == dia].count()
-    return {'dia': dia, 'cantidad': str(respuesta)}
+    return {'dia': dia, 'cantidad': int(respuesta)}
 
 @app.get("/franquicia/{franquicia}")
 def franquicia(franquicia):
@@ -27,7 +27,7 @@ def franquicia(franquicia):
     respuesta1 = df['id'][df['belongs_to_collection'] == franquicia].count()
     respuesta2 = np.sum(df['return'][df['belongs_to_collection'] == franquicia])
     respuesta3 = np.mean(df['return'][df['belongs_to_collection'] == franquicia])
-    return {'franquicia': franquicia, 'cantidad': respuesta1, 'ganancia_total': respuesta2, 'ganancia_promedio': respuesta3}
+    return {'franquicia': franquicia, 'cantidad': int(respuesta1), 'ganancia_total': respuesta2, 'ganancia_promedio': respuesta3}
 
 @app.get("/peliculas_pais/{pais}")
 def peliculas_pais(pais):
