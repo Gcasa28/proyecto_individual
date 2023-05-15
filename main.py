@@ -7,14 +7,14 @@ df = pd.read_csv("data_con_EDA.csv")
 app = FastAPI()
 
 @app.get("/peliculas_mes/{mes}")
-def peliculas_mes(mes : str):
+def peliculas_mes(mes):
     '''Determina la cantidad de películas que se estrenaron en el mes dado'''
    
     respuesta = df['id'][df['release_month'] == mes].count()
     return {'mes': mes, 'cantidad': respuesta}
 
 @app.get("/peliculas_dia/{dia}")
-def peliculas_dia(dia : str):
+def peliculas_dia(dia):
     '''Determina la cantidad de películas que se estrenaron en el día dado'''
    
     respuesta = df['id'][df['release_day'] == dia].count()
