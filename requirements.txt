@@ -3,4 +3,4 @@ numpy
 pandas
 typing
 uvicorn
-sklearn
+scikit-learn
