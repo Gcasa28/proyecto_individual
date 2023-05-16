@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 import pandas as pd
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
 
 df = pd.read_csv("data_con_EDA.csv")
+movies = pd.read_csv("movies.csv")
 
 app = FastAPI()
 
@@ -65,8 +68,37 @@ def retorno(pelicula):
     n = df['title'].size
     for i in range(n):
         if df.iloc[i, 15] == pelicula:
-            respuesta1 += df.iloc[i, 1]
-            respuesta2 += df.iloc[i, 10]
-            respuesta3 += df.iloc[i, 20]
-            respuesta4 = df.iloc[i, 17]
+            inversion += df.iloc[i, 1]
+            ganancia += df.iloc[i, 10]
+            retorno += df.iloc[i, 20]
+            anio = df.iloc[i, 17]
     return {'pelicula':pelicula, 'inversion':inversion, 'ganacia':ganancia,'retorno':retorno, 'anio':int(anio)}
+
+@app.get("/recomendaciones/{titulo_pelicula}")
+def recomendaciones(titulo_pelicula, num_recommendations=5):
+
+    # Crear una matriz TF-IDF a partir de los títulos de las películas
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(movies["title"])
+
+    # Entrenar un modelo de clustering (K-Means)
+    kmeans = KMeans(n_clusters=10, random_state=42)
+    kmeans.fit(tfidf_matrix)
+
+    # Encontrar el cluster más cercano al título de la película proporcionado
+    movie_vector = vectorizer.transform([titulo_pelicula])
+    cluster_label = kmeans.predict(movie_vector)[0]
+
+    # Filtrar las películas en el mismo cluster que la película de interés
+    cluster_movies = movies[kmeans.labels_ == cluster_label]
+
+    # Excluir la película de interés de las recomendaciones
+    cluster_movies = cluster_movies[cluster_movies["title"] != titulo_pelicula]
+
+    # Ordenar las películas por su similitud al título de interés
+    cluster_movies["similitud"] = kmeans.transform(vectorizer.transform(cluster_movies["title"])).sum(axis=1)
+    cluster_movies = cluster_movies.sort_values("similitud", ascending=False).head(num_recommendations)
+
+    # Devolver las películas recomendadas
+    recommendations = cluster_movies["title"].tolist()
+    return recommendations
