@@ -74,9 +74,10 @@ def retorno(pelicula):
             anio = df.iloc[i, 17]
     return {'pelicula':pelicula, 'inversion':inversion, 'ganacia':ganancia,'retorno':retorno, 'anio':int(anio)}
 
-@app.get("/recomendaciones/{titulo_pelicula}")
-def recomendaciones(titulo_pelicula, num_recommendations=5):
+@app.get("/recomendacion/{titulo_pelicula}")
+def recomendacion(titulo_pelicula):
 
+    num_recommendations=5
     # Crear una matriz TF-IDF a partir de los títulos de las películas
     vectorizer = TfidfVectorizer()
     tfidf_matrix = vectorizer.fit_transform(movies["title"])
@@ -101,4 +102,4 @@ def recomendaciones(titulo_pelicula, num_recommendations=5):
 
     # Devolver las películas recomendadas
     recommendations = cluster_movies["title"].tolist()
-    return str(recommendations)
+    return recommendations
