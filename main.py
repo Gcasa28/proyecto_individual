@@ -101,4 +101,4 @@ def recomendaciones(titulo_pelicula, num_recommendations=5):
 
     # Devolver las películas recomendadas
     recommendations = cluster_movies["title"].tolist()
-    return list(recommendations)
+    return str(recommendations)
