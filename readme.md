@@ -26,3 +26,8 @@ Importe un nuevo dataset llamado "credits" con pandas, donde tenia sus columnas 
 - def get_director(nombre_director): Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma.
 
 - def recomendacion(titulo): Recomienda 5 peliculas con respecto a la proporcionada en la funcion.
+
+
+Aca dejo un link para acceder al video de las funciones ya renderizadas y funcionando:
+
+- https://drive.google.com/file/d/17tXO5pFAyT3OwBNT6qvhb9jOPiRDFFHB/view?usp=drive_link
