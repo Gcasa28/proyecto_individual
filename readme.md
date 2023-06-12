@@ -30,4 +30,4 @@ Importe un nuevo dataset llamado "credits" con pandas, donde tenia sus columnas 
 
 Aca dejo un link para acceder al video de las funciones ya renderizadas y funcionando:
 
-- https://drive.google.com/file/d/17tXO5pFAyT3OwBNT6qvhb9jOPiRDFFHB/view?usp=drive_link
+- https://drive.google.com/file/d/1FChsVpjhtWq1EllO520__k6_v3NcTQBG/view?usp=drive_link
